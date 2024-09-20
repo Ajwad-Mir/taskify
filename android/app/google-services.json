@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1096293231216",
+    "project_id": "taskify-ccee9",
+    "storage_bucket": "taskify-ccee9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096293231216:android:25bd5c11aeca868c1fe2b5",
+        "android_client_info": {
+          "package_name": "com.app.taskify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096293231216-lftkl76stmhk2pseeufsuqo9tlte2vnt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.taskify",
+            "certificate_hash": "c23f42c28743cc6b34464ed3a80d09568dc1ec6e"
+          }
+        },
+        {
+          "client_id": "1096293231216-hnqno1gg8ntlf10hlfafr3tbcobuqmai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaMq17yPtXRshqksV7bX7syS_ira-8AnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096293231216-hnqno1gg8ntlf10hlfafr3tbcobuqmai.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1096293231216-mpqqfp8d237kqdq6ft62bu803fn0rbim.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.package.appname"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
