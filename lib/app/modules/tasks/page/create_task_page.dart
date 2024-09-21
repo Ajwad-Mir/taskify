@@ -4,9 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:taskify/app/modules/tasks/controller/tasks_details_controller.dart';
+import 'package:taskify/app/services/localization_service.dart';
+import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/colors/colors.dart';
 import 'package:taskify/global/textstyle/app_text_styles.dart';
 import 'package:taskify/global/widgets/category_widget.dart';
+import 'package:taskify/global/widgets/custom_text_field_widget.dart';
 
 class TaskDetailsPage extends GetView<TasksDetailsController> {
   const TaskDetailsPage({
@@ -17,9 +20,7 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
   Widget build(BuildContext context) {
     return GetBuilder<TasksDetailsController>(
       builder: (_) => Scaffold(
-        backgroundColor: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.primary.withAlpha((255 * 0.5).round())
-            : AppColors.primary.withAlpha((255 * 0.85).round()),
+        backgroundColor: Theme.of(context).brightness == Brightness.dark ? AppColors.primary.withAlpha(110) : AppColors.primary.withAlpha(200),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
@@ -59,7 +60,7 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
                 child: Text(
-                  controller.isUpdateMode.isTrue ? "Update Task" : "Create Task",
+                  controller.isUpdateMode.isTrue ? LocalizationTheme.of(context).updateTask : LocalizationTheme.of(context).createTask,
                   style: AppTextStyles.medium.copyWith(
                     fontSize: 16.sp,
                     color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
@@ -107,30 +108,20 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
   Widget _buildTitleWidget(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: TextFormField(
+      child: CustomizedTextFormField(
         controller: controller.titleController,
         style: AppTextStyles.bold.copyWith(
           fontSize: 42.sp,
           color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
         ),
-        maxLines: null,
-        cursorColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
-        scrollPhysics: const NeverScrollableScrollPhysics(),
-        scrollController: null,
-        keyboardType: TextInputType.text,
-        onTapOutside: (_) => FocusScope.of(context).unfocus(),
-        decoration: InputDecoration(
-          hintText: 'Title',
-          hintStyle: AppTextStyles.bold.copyWith(
-            fontSize: 42.sp,
-            color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
-          ),
-          filled: false,
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          focusedErrorBorder: InputBorder.none,
-          errorBorder: InputBorder.none,
+        hintText: LocalizationTheme.of(context).title,
+        hintStyle: AppTextStyles.bold.copyWith(
+          fontSize: 42.sp,
+          color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
         ),
+        fillColor: Colors.transparent,
+        border: InputBorder.none,
+        focusedBorder: InputBorder.none,
       ),
     );
   }
@@ -138,27 +129,12 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
   Widget _buildScheduleDetails(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            DateFormat('dd MMMM yyyy').format(DateTime.now()),
-            style: AppTextStyles.bold.copyWith(
-              fontSize: 18.sp,
-              color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
-            ),
-          ),
-          15.horizontalSpace,
-          Obx(
-            () => Text(
-              "${controller.descriptionLength.value} Characters",
-              style: AppTextStyles.bold.copyWith(
-                fontSize: 18.sp,
-                color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
-              ),
-            ),
-          ),
-        ],
+      child: Text(
+        "${DateFormat('dd MMMM yyyy', Get.find<LocalizationService>().locale.toString()).format(DateTime.now())}  |  ${controller.descriptionLength.value} ${LocalizationTheme.of(context).characters}",
+        style: AppTextStyles.bold.copyWith(
+          fontSize: 18.sp,
+          color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
+        ),
       ),
     );
   }
@@ -166,35 +142,21 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
   Widget _buildDescriptionWidget(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: TextFormField(
+      child: CustomizedTextFormField(
         controller: controller.descriptionController,
         style: AppTextStyles.bold.copyWith(
           fontSize: 18.sp,
           color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
         ),
-        maxLines: null,
-        cursorColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
-        scrollPhysics: const NeverScrollableScrollPhysics(),
-        scrollController: null,
-        keyboardType: TextInputType.multiline,
-        onTapOutside: (_) => FocusScope.of(context).unfocus(),
-        textInputAction: TextInputAction.newline,
-        expands: true,
-        decoration: InputDecoration(
-          hintText: 'Description',
-          hintStyle: AppTextStyles.bold.copyWith(
-            fontSize: 18.sp,
-            color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
-          ),
-          constraints: BoxConstraints(
-            maxHeight: 150.h,
-          ),
-          filled: false,
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          focusedErrorBorder: InputBorder.none,
-          errorBorder: InputBorder.none,
+        isExpandable: true,
+        hintText: LocalizationTheme.of(context).description,
+        hintStyle: AppTextStyles.bold.copyWith(
+          fontSize: 18.sp,
+          color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
         ),
+        fillColor: Colors.transparent,
+        border: InputBorder.none,
+        focusedBorder: InputBorder.none,
       ),
     );
   }
@@ -242,7 +204,7 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
               Icon(Icons.calendar_today_outlined, color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black),
               10.horizontalSpace,
               Text(
-                'Due Date',
+                LocalizationTheme.of(context).dueDate,
                 style: AppTextStyles.bold.copyWith(
                   fontSize: 18.sp,
                   color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
@@ -258,7 +220,9 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
                 await controller.selectDueDate(context);
               },
               child: Text(
-                controller.selectedDueDate.value != null ? DateFormat('dd MMMM yyyy').format(controller.selectedDueDate.value!) : 'Select Due Date',
+                controller.selectedDueDate.value != null
+                    ? DateFormat('dd MMMM yyyy', Get.find<LocalizationService>().locale.languageCode).format(controller.selectedDueDate.value!)
+                    : LocalizationTheme.of(context).selectDueDate,
                 style: AppTextStyles.bold.copyWith(
                   fontSize: 18.sp,
                   color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
@@ -274,35 +238,22 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
   Widget _buildNoteWidget(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: TextFormField(
+      child: CustomizedTextFormField(
         controller: controller.notesController,
         style: AppTextStyles.bold.copyWith(
           fontSize: 18.sp,
           color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
         ),
-        maxLines: null,
-        cursorColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
-        scrollPhysics: const NeverScrollableScrollPhysics(),
-        scrollController: null,
-        keyboardType: TextInputType.multiline,
-        onTapOutside: (_) => FocusScope.of(context).unfocus(),
-        textInputAction: TextInputAction.newline,
-        expands: true,
-        decoration: InputDecoration(
-          hintText: 'Add Notes',
-          hintStyle: AppTextStyles.bold.copyWith(
-            fontSize: 18.sp,
-            color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
-          ),
-          constraints: BoxConstraints(
-            maxHeight: 150.h,
-          ),
-          filled: false,
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          focusedErrorBorder: InputBorder.none,
-          errorBorder: InputBorder.none,
+        height: 150.h,
+        isExpandable: true,
+        hintText: LocalizationTheme.of(context).addNotes,
+        hintStyle: AppTextStyles.bold.copyWith(
+          fontSize: 18.sp,
+          color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
         ),
+        fillColor: Colors.transparent,
+        border: InputBorder.none,
+        focusedBorder: InputBorder.none,
       ),
     );
   }
@@ -319,7 +270,7 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.h),
                 child: Text(
-                  'No tasks here, create one if you want',
+                  LocalizationTheme.of(context).noTasksHereCreateOneIfYouWant,
                   style: AppTextStyles.bold.copyWith(
                     fontSize: 18.sp,
                     color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
@@ -330,25 +281,20 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
               Row(
                 children: [
                   Expanded(
-                    child: TextFormField(
+                    child: CustomizedTextFormField(
                       controller: controller.subtaskControllers[i],
                       style: AppTextStyles.bold.copyWith(
                         fontSize: 18.sp,
                         color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
                       ),
-                      maxLines: 1,
-                      onTapOutside: (_) => FocusScope.of(context).unfocus(),
-                      cursorColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
-                      decoration: InputDecoration(
-                        hintText: 'Subtask ${i + 1}',
-                        hintStyle: AppTextStyles.bold.copyWith(
-                          fontSize: 18.sp,
-                          color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
-                        ),
-                        filled: false,
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
+                      hintText: LocalizationTheme.of(context).subtask,
+                      hintStyle: AppTextStyles.bold.copyWith(
+                        fontSize: 18.sp,
+                        color: Theme.of(context).brightness == Brightness.light ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.4),
                       ),
+                      fillColor: Colors.transparent,
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
                     ),
                   ),
                   IconButton(
@@ -371,7 +317,7 @@ class TaskDetailsPage extends GetView<TasksDetailsController> {
                   Icon(Icons.add, color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black),
                   5.horizontalSpace,
                   Text(
-                    'Add Subtask',
+                    LocalizationTheme.of(context).addSubtask,
                     style: AppTextStyles.bold.copyWith(
                       fontSize: 18.sp,
                       color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,

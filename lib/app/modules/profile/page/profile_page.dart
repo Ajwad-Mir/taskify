@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:taskify/app/modules/profile/controller/profile_controller.dart';
 import 'package:taskify/generated/assets.dart';
+import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/colors/colors.dart';
 import 'package:taskify/global/textstyle/app_text_styles.dart';
 import 'package:taskify/global/widgets/custom_text_field_widget.dart';
@@ -51,7 +52,7 @@ class ProfilePage extends GetView<ProfileController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Update",
+              LocalizationTheme.of(context).update,
               style: AppTextStyles.semiBold.copyWith(
                 fontSize: 36.sp,
                 color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
@@ -65,7 +66,7 @@ class ProfilePage extends GetView<ProfileController> {
                 fontSize: 16.sp,
                 color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
               ),
-              hintText: "Full Name",
+              hintText: LocalizationTheme.of(context).fullName,
               hintStyle: AppTextStyles.normal.copyWith(
                 fontSize: 16.sp,
                 color:
@@ -73,36 +74,12 @@ class ProfilePage extends GetView<ProfileController> {
               ),
               validator: (val) {
                 if (val.toString().isEmpty) {
-                  return "Please enter full name";
+                  return LocalizationTheme.of(context).pleaseEnterFullName;
                 }
                 return null;
               },
               fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.darkBackgroundColor : AppColors.backgroundColor,
               prefixIcon: Assets.svgLoginPerson,
-              prefixIconColor: const Color(0xFF7B6F72),
-            ),
-            20.verticalSpace,
-            CustomizedTextFormField(
-              controller: controller.emailController,
-              fieldType: TextInputType.emailAddress,
-              style: AppTextStyles.medium.copyWith(
-                fontSize: 16.sp,
-                color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
-              ),
-              hintText: "Email Address",
-              hintStyle: AppTextStyles.normal.copyWith(
-                fontSize: 16.sp,
-                color:
-                    Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
-              ),
-              validator: (val) {
-                if (val.toString().isEmpty) {
-                  return "Please enter email address";
-                }
-                return null;
-              },
-              fillColor: Theme.of(context).brightness == Brightness.dark ? AppColors.darkBackgroundColor : AppColors.backgroundColor,
-              prefixIcon: Assets.svgLoginEmail,
               prefixIconColor: const Color(0xFF7B6F72),
             ),
             20.verticalSpace,
@@ -115,19 +92,20 @@ class ProfilePage extends GetView<ProfileController> {
                   color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
                 ),
                 obscureText: controller.showNewPassword.value,
-                hintText: "Password",
+                hintText: LocalizationTheme.of(context).password,
                 hintStyle: AppTextStyles.normal.copyWith(
                   fontSize: 16.sp,
-                  color:
-                      Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkTextColor.withOpacity(0.4)
+                      : AppColors.textColor.withOpacity(0.4),
                 ),
                 validator: (val) {
                   if (val.toString().isEmpty) {
-                    return "Please enter password";
+                    return LocalizationTheme.of(context).pleaseEnterPassword;
                   } else if (val.toString().length <= 6) {
-                    return "Password length must be greater than 6 characters";
+                    return LocalizationTheme.of(context).passwordLengthMustBeGreaterThanSixCharacters;
                   } else if (val.toString() != controller.confirmPasswordController.text) {
-                    return "Both Passwords must be same";
+                    return LocalizationTheme.of(context).bothPasswordsMustBeSame;
                   }
                   return null;
                 },
@@ -150,23 +128,23 @@ class ProfilePage extends GetView<ProfileController> {
                   color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
                 ),
                 obscureText: controller.showConfirmPassword.value,
-                hintText: "Confirm Password",
+                hintText: LocalizationTheme.of(context).confirmPassword,
                 hintStyle: AppTextStyles.normal.copyWith(
                   fontSize: 16.sp,
-                  color:
-                      Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkTextColor.withOpacity(0.4)
+                      : AppColors.textColor.withOpacity(0.4),
                 ),
                 validator: (val) {
                   if (val.toString().isEmpty) {
-                    return "Please enter password";
+                    return LocalizationTheme.of(context).pleaseEnterPassword;
                   } else if (val.toString().length <= 6) {
-                    return "Password length must be greater than 6 characters";
+                    return LocalizationTheme.of(context).passwordLengthMustBeGreaterThanSixCharacters;
                   } else if (val.toString() != controller.newPasswordController.text) {
-                    return "Both Passwords must be same";
+                    return LocalizationTheme.of(context).bothPasswordsMustBeSame;
                   }
                   return null;
                 },
-
                 suffixIcon: controller.showConfirmPassword.isFalse ? Assets.svgShowPassword : Assets.svgHidePassword,
                 onSuffixIconClicked: () {
                   controller.showConfirmPassword.value = !controller.showConfirmPassword.value;
@@ -201,7 +179,7 @@ class ProfilePage extends GetView<ProfileController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         alignment: Alignment.center,
         child: Text(
-          "Update",
+          LocalizationTheme.of(context).update,
           style: AppTextStyles.normal.copyWith(
             fontSize: 18.sp,
             color: Colors.white,

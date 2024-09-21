@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:taskify/app/modules/login/controller/login_controller.dart';
 import 'package:taskify/app/modules/register/page/register_page.dart';
 import 'package:taskify/generated/assets.dart';
+import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/colors/colors.dart';
 import 'package:taskify/global/textstyle/app_text_styles.dart';
 import 'package:taskify/global/widgets/custom_text_field_widget.dart';
@@ -52,7 +53,7 @@ class LoginPage extends GetView<LoginController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Login",
+              LocalizationTheme.of(context).login,
               style: AppTextStyles.semiBold.copyWith(
                 fontSize: 36.sp,
                 color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
@@ -66,7 +67,7 @@ class LoginPage extends GetView<LoginController> {
                 fontSize: 16.sp,
                 color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
               ),
-              hintText: "Email Address",
+              hintText: LocalizationTheme.of(context).emailAddress,
               hintStyle: AppTextStyles.normal.copyWith(
                 fontSize: 16.sp,
                 color:
@@ -74,7 +75,7 @@ class LoginPage extends GetView<LoginController> {
               ),
               validator: (val) {
                 if (val.toString().isEmpty) {
-                  return "Please enter email address";
+                  return LocalizationTheme.of(context).pleaseEnterEmailAddress;
                 }
                 return null;
               },
@@ -92,15 +93,16 @@ class LoginPage extends GetView<LoginController> {
                   color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
                 ),
                 obscureText: controller.showPassword.value,
-                hintText: "Password",
+                hintText: LocalizationTheme.of(context).password,
                 hintStyle: AppTextStyles.normal.copyWith(
                   fontSize: 16.sp,
-                  color:
-                      Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkTextColor.withOpacity(0.4)
+                      : AppColors.textColor.withOpacity(0.4),
                 ),
                 validator: (val) {
                   if (val.toString().isEmpty) {
-                    return "Please enter password";
+                    return LocalizationTheme.of(context).pleaseEnterPassword;
                   }
                   return null;
                 },
@@ -142,7 +144,7 @@ class LoginPage extends GetView<LoginController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         alignment: Alignment.center,
         child: Text(
-          "Login",
+          LocalizationTheme.of(context).login,
           style: AppTextStyles.normal.copyWith(
             fontSize: 18.sp,
             color: Colors.white,
@@ -158,7 +160,7 @@ class LoginPage extends GetView<LoginController> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "Don't Have an Account? ",
+          LocalizationTheme.of(context).dontHaveAnAccount,
           style: AppTextStyles.medium.copyWith(
             fontSize: 18.sp,
             color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.5) : AppColors.textColor.withOpacity(0.5),
@@ -176,7 +178,7 @@ class LoginPage extends GetView<LoginController> {
           minSize: 0,
           padding: EdgeInsets.zero,
           child: Text(
-            "Register",
+            LocalizationTheme.of(context).register,
             style: AppTextStyles.bold.copyWith(
               fontSize: 18.sp,
               color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,

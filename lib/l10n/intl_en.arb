@@ -1,0 +1,155 @@
+{
+  "@@locale": "en",
+  "appName": "Taskify",
+  "@appName": {
+    "description": ""
+  },
+  "login": "Login",
+  "@login": {
+    "description": ""
+  },
+  "emailAddress": "Email Address",
+  "@emailAddress": {
+    "description": ""
+  },
+  "pleaseEnterEmailAddress": "Please enter email address",
+  "@pleaseEnterEmailAddress": {
+    "description": ""
+  },
+  "password": "Password",
+  "@password": {
+    "description": ""
+  },
+  "pleaseEnterPassword": "Please enter password",
+  "@pleaseEnterPassword": {
+    "description": ""
+  },
+  "dontHaveAnAccount": "Don't Have an Account? ",
+  "@dontHaveAnAccount": {
+    "description": ""
+  },
+  "register": "Register",
+  "@register": {
+    "description": ""
+  },
+  "fullName": "Full Name",
+  "@fullName": {
+    "description": ""
+  },
+  "pleaseEnterFullName": "Please enter full name",
+  "@pleaseEnterFullName": {
+    "description": ""
+  },
+  "passwordLengthMustBeGreaterThanSixCharacters": "Password length must be greater than 6 characters",
+  "@passwordLengthMustBeGreaterThanSixCharacters": {
+    "description": ""
+  },
+  "bothPasswordsMustBeSame": "Both Passwords must be same",
+  "@bothPasswordsMustBeSame": {
+    "description": ""
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": ""
+  },
+  "alreadyHaveAnAccount": "Already Have an Account? ",
+  "@alreadyHaveAnAccount": {
+    "description": ""
+  },
+  "looksLikeYourTaskListIsEmptyWhyNotKickThingsOffByAddingSomeTasks": "Looks like your task list is empty!\\nWhy not kick things off by adding some tasks.",
+  "@looksLikeYourTaskListIsEmptyWhyNotKickThingsOffByAddingSomeTasks": {
+    "description": ""
+  },
+  "progress": "Progress",
+  "@progress": {
+    "description": ""
+  },
+  "collapse": "Collapse",
+  "@collapse": {
+    "description": ""
+  },
+  "expand": "Expand",
+  "@expand": {
+    "description": ""
+  },
+  "updateTask": "Update Task",
+  "@updateTask": {
+    "description": ""
+  },
+  "updatingTask": "Updating Task",
+  "@updatingTask": {
+    "description": ""
+  },
+  "createTask": "Create Task",
+  "@createTask": {
+    "description": ""
+  },
+  "creatingTask": "Creating Task",
+  "@creatingTask": {
+    "description": ""
+  },
+  "title": "Title",
+  "@title": {
+    "description": ""
+  },
+  "characters": "Characters",
+  "@characters": {
+    "description": ""
+  },
+  "description": "Description",
+  "@description": {
+    "description": ""
+  },
+  "veryLow": "Very Low",
+  "@veryLow": {
+    "description": ""
+  },
+  "low": "Low",
+  "@low": {
+    "description": ""
+  },
+  "normal": "Normal",
+  "@normal": {
+    "description": ""
+  },
+  "high": "High",
+  "@high": {
+    "description": ""
+  },
+  "veryHigh": "Very High",
+  "@veryHigh": {
+    "description": ""
+  },
+  "dueDate": "Due Date",
+  "@dueDate": {
+    "description": ""
+  },
+  "selectDueDate": "Select Due Date",
+  "@selectDueDate": {
+    "description": ""
+  },
+  "notes": "Notes",
+  "@notes": {
+    "description": ""
+  },
+  "addNotes": "Add Notes",
+  "@addNotes": {
+    "description": ""
+  },
+  "noTasksHereCreateOneIfYouWant": "No tasks here, create one if you want",
+  "@noTasksHereCreateOneIfYouWant": {
+    "description": ""
+  },
+  "subtask": "Subtask",
+  "@subTask": {
+    "description": ""
+  },
+  "addSubtask": "Add Subtask",
+  "@addSubtask": {
+    "description": ""
+  },
+  "update": "Update",
+  "@update": {
+    "description": ""
+  }
+}

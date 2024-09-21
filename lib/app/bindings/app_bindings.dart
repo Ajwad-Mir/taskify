@@ -5,7 +5,6 @@ import 'package:taskify/app/modules/register/controller/register_controller.dart
 import 'package:taskify/app/modules/splash/controller/splash_controller.dart';
 import 'package:taskify/app/modules/tasks/controller/tasks_controller.dart';
 import 'package:taskify/app/modules/tasks/controller/tasks_details_controller.dart';
-
 class AppBindings extends Bindings {
   @override
   void dependencies() {

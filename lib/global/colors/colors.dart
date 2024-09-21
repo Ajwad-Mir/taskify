@@ -24,5 +24,12 @@ class AppColors {
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
+  );static const LinearGradient darkPrimaryGradient = LinearGradient(
+    colors: [
+      Color(0xFFD8771A),
+      Color(0xFFEAB47A),
+    ],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
   );
 }

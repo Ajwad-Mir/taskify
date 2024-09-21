@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:taskify/app/database/tasks_database.dart';
 import 'package:taskify/app/models/tasks_model_folder/tasks_model.dart';
 import 'package:taskify/app/modules/tasks/controller/tasks_controller.dart';
+import 'package:taskify/app/services/localization_service.dart';
+import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/widgets/custom_loader_widget.dart';
 
 class TasksDetailsController extends GetxController {
@@ -12,8 +14,14 @@ class TasksDetailsController extends GetxController {
   final descriptionController = TextEditingController();
   final notesController = TextEditingController();
   final subtaskControllers = <TextEditingController>[].obs;
-  final priorityList = ['Very Low', 'Low', 'Normal', 'High', 'Very High'];
-  final selectedPriority = 'Normal'.obs;
+  final priorityList = [
+    LocalizationTheme.current.veryLow,
+    LocalizationTheme.current.low,
+    LocalizationTheme.current.normal,
+    LocalizationTheme.current.high,
+    LocalizationTheme.current.veryHigh,
+  ];
+  final selectedPriority = LocalizationTheme.current.normal.obs;
   var descriptionLength = 0.obs;
   final selectedDueDate = Rxn<DateTime>();
   final isUpdateMode = false.obs;
@@ -32,25 +40,23 @@ class TasksDetailsController extends GetxController {
     selectedPriority.value = priorityList.elementAt(task.taskPriority - 1);
     notesController.text = task.taskNotes;
     selectedDueDate.value = task.taskDueDate;
-    task.taskSubtasks.forEach((element) {
+    for (var element in task.taskSubtasks) {
       subtaskControllers.add(TextEditingController(text: element.subTaskTitle));
-    });
+    }
   }
 
-  // Add a subtask
   void addSubtask() {
     subtaskControllers.add(TextEditingController());
   }
 
-  // Remove a subtask
   void removeSubtask(int index) {
     subtaskControllers.removeAt(index);
   }
 
-  // Select due date for the task
   Future<void> selectDueDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
+      locale: Get.find<LocalizationService>().locale,
       initialDate: selectedDueDate.value ?? DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime(2100, 12, 31),
@@ -61,15 +67,13 @@ class TasksDetailsController extends GetxController {
     }
   }
 
-  // Create a new task
   Future<void> createTask() async {
     SmartDialog.showLoading(
-      builder: (context) => const CustomLoaderWidget(
-        msg: "Creating Task",
+      builder: (context) => CustomLoaderWidget(
+        msg: LocalizationTheme.of(context).creatingTask,
       ),
     );
 
-    // Creating task model
     final newTask = TaskModel.createNewTask(
       taskTitle: titleController.text,
       taskDescription: descriptionController.text.isEmpty ? '' : descriptionController.text,
@@ -79,10 +83,8 @@ class TasksDetailsController extends GetxController {
       taskNotes: notesController.text,
     );
 
-    // Save the task in the database
     await TaskDatabase().createTask(newTask);
 
-    // // Update the tasks list in the controller and UI
     final tasksController = Get.find<TasksController>();
     await tasksController.getAllTasks();
     tasksController.filterTaskBySelectedDate(tasksController.selectedDay.value, DateTime.now());
@@ -93,12 +95,11 @@ class TasksDetailsController extends GetxController {
 
   Future<void> updateTask() async {
     SmartDialog.showLoading(
-      builder: (context) => const CustomLoaderWidget(
-        msg: "Updating Task",
+      builder: (context) => CustomLoaderWidget(
+        msg: LocalizationTheme.of(context).updatingTask,
       ),
     );
 
-    //Updated Task
     final updatedTask = selectedTask.value.copyWith(
       taskTitle: titleController.text,
       taskDescription: descriptionController.text,
@@ -109,10 +110,8 @@ class TasksDetailsController extends GetxController {
       taskUpdatedAt: DateTime.now(),
     );
 
-    // Save the task in the database
     await TaskDatabase().updateTask(updatedTask);
 
-    // // Update the tasks list in the controller and UI
     final tasksController = Get.find<TasksController>();
     await tasksController.getAllTasks();
     tasksController.filterTaskBySelectedDate(tasksController.selectedDay.value, DateTime.now());
@@ -121,11 +120,10 @@ class TasksDetailsController extends GetxController {
     Get.back();
   }
 
-
   void clearData() {
     titleController.clear();
     descriptionController.clear();
-    selectedPriority.value = 'Normal';
+    selectedPriority.value = LocalizationTheme.current.normal;
     notesController.clear();
     selectedDueDate.value = null;
     subtaskControllers.clear();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:taskify/app/services/localization_service.dart';
 import 'package:taskify/global/colors/colors.dart';
 
 class CustomizedTextFormField extends StatefulWidget {
@@ -18,9 +19,10 @@ class CustomizedTextFormField extends StatefulWidget {
   final bool isExpandable;
   final String? prefixIcon;
   final Color? prefixIconColor;
-  final OutlineInputBorder? border;
-  final OutlineInputBorder? focusedBorder;
+  final InputBorder? border;
+  final InputBorder? focusedBorder;
   final String? suffixIcon;
+  final double? height;
   final Color? suffixIconColor;
   final Color fillColor;
   final VoidCallback? onPressed;
@@ -44,6 +46,7 @@ class CustomizedTextFormField extends StatefulWidget {
     this.suffixIcon,
     this.suffixIconColor,
     this.border,
+    this.height,
     this.focusedBorder,
     this.validator,
     this.isExpandable = false,
@@ -71,6 +74,7 @@ class _CustomizedTextFormFieldState extends State<CustomizedTextFormField> {
       obscureText: widget.obscureText,
       validator: widget.validator,
       cursorColor: AppColors.primary,
+      textDirection: (Get.find<LocalizationService>().locale == const Locale('ar')) ? TextDirection.rtl : TextDirection.ltr,
       decoration: InputDecoration(
         filled: true,
         fillColor: widget.fillColor,
@@ -79,7 +83,7 @@ class _CustomizedTextFormFieldState extends State<CustomizedTextFormField> {
         hintText: widget.hintText,
         hintStyle: widget.hintStyle,
         constraints: BoxConstraints(
-          maxHeight: 235.h,
+          maxHeight: widget.height ?? 235.h
         ),
         prefixIcon: widget.prefixIcon != null
             ? Container(

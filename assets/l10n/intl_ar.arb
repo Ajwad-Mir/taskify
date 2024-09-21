@@ -1,0 +1,147 @@
+{
+  "@@locale": "ar",
+  "appName": "تاسكيفي",
+  "@appName": {
+    "description": ""
+  },
+  "login": "تسجيل الدخول",
+  "@login": {
+    "description": ""
+  },
+  "emailAddress": "عنوان البريد الإلكتروني",
+  "@emailAddress": {
+    "description": ""
+  },
+  "pleaseEnterEmailAddress": "يرجى إدخال عنوان البريد الإلكتروني",
+  "@pleaseEnterEmailAddress": {
+    "description": ""
+  },
+  "password": "كلمة المرور",
+  "@password": {
+    "description": ""
+  },
+  "pleaseEnterPassword": "يرجى إدخال كلمة المرور",
+  "@pleaseEnterPassword": {
+    "description": ""
+  },
+  "dontHaveAnAccount": "ليس لديك حساب؟ ",
+  "@dontHaveAnAccount": {
+    "description": ""
+  },
+  "register": "إنشاء حساب",
+  "@register": {
+    "description": ""
+  },
+  "fullName": "الاسم الكامل",
+  "@fullName": {
+    "description": ""
+  },
+  "pleaseEnterFullName": "يرجى إدخال الاسم الكامل",
+  "@pleaseEnterFullName": {
+    "description": ""
+  },
+  "passwordLengthMustBeGreaterThanSixCharacters": "يجب أن تكون كلمة المرور أطول من 6 أحرف",
+  "@passwordLengthMustBeGreaterThanSixCharacters": {
+    "description": ""
+  },
+  "bothPasswordsMustBeSame": "يجب أن تكون كلمات المرور متطابقة",
+  "@bothPasswordsMustBeSame": {
+    "description": ""
+  },
+  "confirmPassword": "تأكيد كلمة المرور",
+  "@confirmPassword": {
+    "description": ""
+  },
+  "alreadyHaveAnAccount": "هل لديك حساب بالفعل؟ ",
+  "@alreadyHaveAnAccount": {
+    "description": ""
+  },
+  "looksLikeYourTaskListIsEmptyWhyNotKickThingsOffByAddingSomeTasks": "يبدو أن قائمة المهام الخاصة بك فارغة!\\nلماذا لا تبدأ بإضافة بعض المهام.",
+  "@looksLikeYourTaskListIsEmptyWhyNotKickThingsOffByAddingSomeTasks": {
+    "description": ""
+  },
+  "progress": "التقدم",
+  "@progress": {
+    "description": ""
+  },
+  "collapse": "طي",
+  "@collapse": {
+    "description": ""
+  },
+  "expand": "توسيع",
+  "@expand": {
+    "description": ""
+  },
+  "updateTask": "تحديث المهمة",
+  "@updateTask": {
+    "description": ""
+  },
+  "updatingTask": "جاري تحديث المهمة",
+  "@updatingTask": {
+    "description": ""
+  },
+  "createTask": "إنشاء مهمة",
+  "@createTask": {
+    "description": ""
+  },
+  "title": "العنوان",
+  "@title": {
+    "description": ""
+  },
+  "characters": "الأحرف",
+  "@characters": {
+    "description": ""
+  },
+  "description": "الوصف",
+  "@description": {
+    "description": ""
+  },
+  "veryLow": "منخفض جدًا",
+  "@veryLow": {
+    "description": ""
+  },
+  "low": "منخفض",
+  "@low": {
+    "description": ""
+  },
+  "normal": "عادي",
+  "@normal": {
+    "description": ""
+  },
+  "high": "مرتفع",
+  "@high": {
+    "description": ""
+  },
+  "veryHigh": "مرتفع جدًا",
+  "@veryHigh": {
+    "description": ""
+  },
+  "dueDate": "تاريخ الاستحقاق",
+  "@dueDate": {
+    "description": ""
+  },
+  "selectDueDate": "اختر تاريخ الاستحقاق",
+  "@selectDueDate": {
+    "description": ""
+  },
+  "addNotes": "إضافة ملاحظات",
+  "@addNotes": {
+    "description": ""
+  },
+  "noTasksHereCreateOneIfYouWant": "لا توجد مهام هنا، أنشئ واحدة إذا كنت ترغب",
+  "@noTasksHereCreateOneIfYouWant": {
+    "description": ""
+  },
+  "subtask": "مهمة فرعية",
+  "@subTask": {
+    "description": ""
+  },
+  "addSubtask": "إضافة مهمة فرعية",
+  "@addSubtask": {
+    "description": ""
+  },
+  "update": "تحديث",
+  "@update": {
+    "description": ""
+  }
+}

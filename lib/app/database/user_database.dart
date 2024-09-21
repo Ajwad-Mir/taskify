@@ -85,7 +85,6 @@ class UserDatabase {
           SmartDialog.showToast('User synced to Firebase');
           return updatedUser;
         } else {
-
           UserCredential existingFirebaseUser = await _auth.signInWithEmailAndPassword(
             email: localUser.email,
             password: localUser.password,
@@ -141,7 +140,7 @@ class UserDatabase {
 
   Future<UserModel?> _registerLocally(String fullName, String email, String password) async {
     final newUser = UserModel(
-      id: _generateCustomUid(28),
+      id: _generateCustomUid(),
       fullName: fullName,
       email: email,
       password: password,
@@ -172,6 +171,7 @@ class UserDatabase {
     return newUser;
   }
 
+  //Register user in the Firebase Authentication and Cloud Firestore.
   Future<UserModel?> _registerWithFirebase(String fullName, String email, String password) async {
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -191,12 +191,14 @@ class UserDatabase {
     }
   }
 
+  //If User s offline, login user from the Hive account
   Future<UserModel?> _loginLocally(String email, String password) async {
     UserModel? localUser = _userBox.values.firstWhere(
-          (user) => user.email == email && user.password == password,
+      (user) => user.email == email && user.password == password,
       orElse: () => UserModel.empty(),
     );
 
+    //Check if user exists in user's collection in Hive
     if (localUser != UserModel.empty()) {
       await GetStorage().write('currentUserID', localUser.id);
       return localUser;
@@ -206,6 +208,7 @@ class UserDatabase {
     }
   }
 
+  //If User s offline, login user from the Hive account
   Future<UserModel?> _loginWithFirebase(String email, String password) async {
     try {
       // First, check if the user exists in Firebase Authentication
@@ -251,27 +254,42 @@ class UserDatabase {
     }
   }
 
-
+  //If user is online, save user to both firebase and hive
   Future<void> _saveUserToBothLocalAndFirebase(UserModel user) async {
     await _userBox.put(user.id, user);
     await _firestore.collection('users').doc(user.id).set(user.toMap());
     await GetStorage().write('currentUserID', user.id);
   }
 
+  //Update User in Firebase Auth and Cloud Firestore
   Future<void> _updateUserInFirebase(String userId, UserModel updatedUser) async {
     try {
       final currentUser = FirebaseAuth.instance.currentUser;
-      await currentUser?.updateProfile(displayName: updatedUser.fullName);
-      await currentUser?.updatePassword(updatedUser.password);
-      await currentUser?.verifyBeforeUpdateEmail(updatedUser.email);
-      await _firestore.collection('users').doc(userId).update(updatedUser.toMap());
+      if (currentUser != null) {
+        // Update display name
+        if (updatedUser.fullName != currentUser.displayName) {
+          await currentUser.updateDisplayName(updatedUser.fullName);
+        }
 
+        // Update password
+        if (updatedUser.password.isNotEmpty) {
+          await currentUser.updatePassword(updatedUser.password);
+        }
+
+        // Update user data in Firestore
+        await _firestore.collection('users').doc(userId).update(updatedUser.toMap());
+      } else {
+        throw Exception('No user is currently signed in');
+      }
     } catch (e) {
       if (kDebugMode) {
         print('Error updating user in Firebase: $e');
       }
+      rethrow; // Rethrow the exception to handle it in the calling function
     }
   }
+
+  //Sync Hive Users to Firestore.
   Future<void> _syncLocalToFirebase() async {
     for (var user in _userBox.values) {
       try {
@@ -280,8 +298,7 @@ class UserDatabase {
         bool userExistsInAuth = signInMethods.isNotEmpty;
 
         // Check if user exists in Firestore
-        DocumentSnapshot<Map<String, dynamic>> firestoreDoc =
-        await _firestore.collection('users').doc(user.id).get();
+        DocumentSnapshot<Map<String, dynamic>> firestoreDoc = await _firestore.collection('users').doc(user.id).get();
         bool userExistsInFirestore = firestoreDoc.exists;
 
         if (userExistsInAuth) {
@@ -320,7 +337,7 @@ class UserDatabase {
 
         SmartDialog.showToast('User synced successfully');
       } on FirebaseAuthException catch (e) {
-        if(e.message == 'email-already-in-use') {
+        if (e.message == 'email-already-in-use') {
           if (kDebugMode) {
             print('Error syncing user ${user.email}: $e');
           }
@@ -330,6 +347,7 @@ class UserDatabase {
     }
   }
 
+  //Sync User ID to Firebase when user comes online during the app lifecycle
   Future<void> _updateLocalUserId(UserModel user, String newId) async {
     UserModel updatedUser = user.copyWith(id: newId);
     await _userBox.delete(user.id);
@@ -346,7 +364,7 @@ class UserDatabase {
     final firebaseUsers = await _firestore.collection('users').get();
     for (var doc in firebaseUsers.docs) {
       UserModel firebaseUser = UserModel.fromMap(doc.data());
-      if(_userBox.containsKey(firebaseUser.id) == false) {
+      if (_userBox.containsKey(firebaseUser.id) == false) {
         await _userBox.put(firebaseUser.id, firebaseUser);
       }
     }
@@ -367,8 +385,8 @@ class UserDatabase {
     }
   }
 
-  String _generateCustomUid(int length) {
+  String _generateCustomUid() {
     const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    return List.generate(length, (index) => characters[Random.secure().nextInt(characters.length)]).join();
+    return List.generate(28, (index) => characters[Random.secure().nextInt(characters.length)]).join();
   }
 }

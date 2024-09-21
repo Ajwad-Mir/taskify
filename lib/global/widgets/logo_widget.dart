@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:taskify/generated/assets.dart';
+import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/colors/colors.dart';
 
 class LogoWidget extends StatelessWidget {
@@ -55,7 +56,7 @@ class LogoWidget extends StatelessWidget {
 
   Widget _buildLogoText(BuildContext context) {
     return Text(
-      "Taskify",
+      LocalizationTheme.of(context).appName,
       style: TextStyle(
         color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
         fontFamily: Assets.fontsBodoniModaSCVariableFont,

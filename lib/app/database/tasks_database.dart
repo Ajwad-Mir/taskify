@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_storage/get_storage.dart';
@@ -63,20 +64,34 @@ class TaskDatabase {
     }
   }
 
-  // Read all tasks from local Hive storage
+// Read all tasks from Firebase if online, or Hive (local storage) if offline
   Future<List<TaskModel>> getAllTasks() async {
+    final isOffline = await ConnectionHelper.hasNoConnectivity();
     final box = await _openBox();
 
-    // Retrieve all tasks from Hive (local storage)
-    final tasks = box.values.toList();
+    if (isOffline) {
+      // Retrieve all tasks from Hive (local storage)
+      final tasks = box.values.toList();
+      return tasks;
+    } else {
+      // Sync local Hive tasks to Firebase before fetching from Firebase
+      await syncTasks();
 
-    // Optionally sync Firestore to local storage if online
-    final isOffline = await ConnectionHelper.hasNoConnectivity();
-    if (!isOffline) {
-      await syncFirestoreToLocal();
+      // Retrieve all tasks from Firebase (online)
+      final userId = await GetStorage().read('currentUserID');
+      if (userId == null || userId.isEmpty) {
+        return [];
+      }
+
+      final querySnapshot = await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').get();
+
+      final tasks = querySnapshot.docs.map((doc) {
+        return TaskModel.fromMap(doc.data());
+      }).toList();
+
+      // Optionally, you can also sync the fetched tasks back to Hive here if needed.
+      return tasks;
     }
-
-    return tasks;
   }
 
   // Update a task (local and Firestore if online)
@@ -89,7 +104,7 @@ class TaskDatabase {
     // If the user is online, sync the updated task to Firestore
     final isOffline = await ConnectionHelper.hasNoConnectivity();
     if (!isOffline) {
-      await _syncTaskToFirestore(updatedTask,updateTaskId: true);
+      await _syncTaskToFirestore(updatedTask, updateTaskId: true);
     }
   }
 
@@ -143,54 +158,78 @@ class TaskDatabase {
 
   // Sync Firestore tasks to Hive (when the user becomes online)
   Future<void> syncFirestoreToLocal() async {
-    final isOffline = await ConnectionHelper.hasNoConnectivity();
-    if (!isOffline) {
-      final userId = await GetStorage().read('currentUserID');
-      final querySnapshot = await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').get();
-      final box = await _openBox();
+    try {
+      final isOffline = await ConnectionHelper.hasNoConnectivity();
+      if (!isOffline) {
+        final userId = await GetStorage().read('currentUserID');
+        if (userId == null || userId.isEmpty) {
+          return;
+        }
 
-      // Get all local task IDs
-      final localTaskIds = box.keys.cast<String>().toSet();
+        final querySnapshot = await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').get();
+        final box = await _openBox();
 
-      // Process Firestore tasks
-      for (var doc in querySnapshot.docs) {
-        final task = TaskModel.fromMap(doc.data());
-        if (localTaskIds.contains(task.taskId)) {
-          // Task exists locally, update it
-          await box.put(task.taskId, task);
-          localTaskIds.remove(task.taskId);
-        } else {
-          // Task doesn't exist locally, delete it from Firestore
-          await _deleteTaskFromFirestore(task.taskId);
+        // Get all local task IDs
+        final localTaskIds = box.keys.cast<String>().toSet();
+
+        // Process Firestore tasks
+        for (var doc in querySnapshot.docs) {
+          final task = TaskModel.fromMap(doc.data());
+          if (task.taskId.isNotEmpty) {
+            if (localTaskIds.contains(task.taskId)) {
+              // Task exists locally, update it
+              await box.put(task.taskId, task);
+              localTaskIds.remove(task.taskId);
+            }
+          } else {
+            // Task doesn't have a valid taskId, delete it from Firestore
+            await _deleteTaskFromFirestore(doc.id);
+          }
+        }
+
+        // Any remaining localTaskIds are new tasks created offline
+        for (var taskId in localTaskIds) {
+          final task = box.get(taskId);
+          if (task != null && task.taskId.isNotEmpty) {
+            await _syncTaskToFirestore(task, updateTaskId: true);
+          } else {
+            // Remove local task with invalid taskId
+            await box.delete(taskId);
+          }
         }
       }
-
-      // Any remaining localTaskIds are new tasks created offline
-      for (var taskId in localTaskIds) {
-        final task = box.get(taskId);
-        if (task != null) {
-          await _syncTaskToFirestore(task, updateTaskId: true);
-        }
-      }
+    } catch (e) {
+      // Handle the error appropriately
     }
   }
 
-  // Helper method to sync a task to Firestore
   Future<void> _syncTaskToFirestore(TaskModel task, {bool updateTaskId = false}) async {
     final userId = await GetStorage().read('currentUserID');
 
-    if (updateTaskId == false) {
-      // Add to Firestore with a new document ID and update taskId in Hive
-      await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').add(task.toMap()).then((val) async {
-        await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').doc(val.id).update({'taskId': val.id});
-        // Update the task with the new taskId in Hive
-        final box = await _openBox();
-        task = task.copyWith(taskId: val.id);
-        await box.put(task.taskId, task);
-      });
-    } else {
-      // Add or update the task in Firestore
-      await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').doc(task.taskId).set(task.toMap());
+    if (userId == null || userId.isEmpty) {
+      return;
+    }
+
+    if (updateTaskId && task.taskId.isEmpty) {
+      return;
+    }
+
+    try {
+      if (!updateTaskId) {
+        // Add to Firestore with a new document ID and update taskId in Hive
+        await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').add(task.toMap()).then((val) async {
+          await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').doc(val.id).update({'taskId': val.id});
+          // Update the task with the new taskId in Hive
+          final box = await _openBox();
+          task = task.copyWith(taskId: val.id);
+          await box.put(task.taskId, task);
+        });
+      } else {
+        // Add or update the task in Firestore
+        await FirebaseFirestore.instance.collection('users').doc(userId).collection('tasks').doc(task.taskId).set(task.toMap());
+      }
+    } catch (e) {
+      // Handle the error appropriately
     }
   }
 

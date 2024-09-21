@@ -13,6 +13,9 @@ class Assets {
   static const String fontsPoppinsRegular = 'assets/fonts/Poppins-Regular.ttf';
   static const String fontsPoppinsSemiBold = 'assets/fonts/Poppins-SemiBold.ttf';
   static const String fontsPoppinsThin = 'assets/fonts/Poppins-Thin.ttf';
+  static const String l10nIntlAr = 'assets/l10n/intl_ar.arb';
+  static const String l10nIntlEn = 'assets/l10n/intl_en.arb';
+  static const String svgEnglishToArabic = 'assets/svg/language_conversion.svg';
   static const String svgHidePassword = 'assets/svg/hide_password.svg';
   static const String svgLoginEmail = 'assets/svg/login_email.svg';
   static const String svgLoginPassword = 'assets/svg/login_password.svg';

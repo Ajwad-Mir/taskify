@@ -6,12 +6,9 @@ class UserService extends GetxService{
 
   final Rx<UserModel> currentUser = UserModel.empty().obs;
 
-  Future<UserModel> updateUser(String? email, String? fullName, String? password) async{
+  Future<UserModel> updateUser(String? fullName, String? password) async{
 
     final updatedUser = Get.find<UserService>().currentUser.value.copyWith(
-      email: (email.toString().isEmpty || email.toString() == Get.find<UserService>().currentUser.value.email)
-          ? Get.find<UserService>().currentUser.value.email
-          : email.toString(),
       fullName: (fullName.toString().isEmpty || fullName.toString() == Get.find<UserService>().currentUser.value.fullName)
           ? Get.find<UserService>().currentUser.value.fullName
           : fullName.toString(),

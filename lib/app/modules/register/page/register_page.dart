@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:taskify/app/modules/login/page/login_page.dart';
 import 'package:taskify/app/modules/register/controller/register_controller.dart';
 import 'package:taskify/generated/assets.dart';
+import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/colors/colors.dart';
 import 'package:taskify/global/textstyle/app_text_styles.dart';
 import 'package:taskify/global/widgets/custom_text_field_widget.dart';
@@ -52,7 +53,7 @@ class RegisterPage extends GetView<RegisterController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Register",
+              LocalizationTheme.of(context).register,
               style: AppTextStyles.semiBold.copyWith(
                 fontSize: 36.sp,
                 color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
@@ -66,7 +67,7 @@ class RegisterPage extends GetView<RegisterController> {
                 fontSize: 16.sp,
                 color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
               ),
-              hintText: "Full Name",
+              hintText: LocalizationTheme.of(context).fullName,
               hintStyle: AppTextStyles.normal.copyWith(
                 fontSize: 16.sp,
                 color:
@@ -74,7 +75,7 @@ class RegisterPage extends GetView<RegisterController> {
               ),
               validator: (val) {
                 if (val.toString().isEmpty) {
-                  return "Please enter full name";
+                  return LocalizationTheme.of(context).pleaseEnterFullName;
                 }
                 return null;
               },
@@ -90,7 +91,7 @@ class RegisterPage extends GetView<RegisterController> {
                 fontSize: 16.sp,
                 color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
               ),
-              hintText: "Email Address",
+              hintText: LocalizationTheme.of(context).emailAddress,
               hintStyle: AppTextStyles.normal.copyWith(
                 fontSize: 16.sp,
                 color:
@@ -98,7 +99,7 @@ class RegisterPage extends GetView<RegisterController> {
               ),
               validator: (val) {
                 if (val.toString().isEmpty) {
-                  return "Please enter email address";
+                  return LocalizationTheme.of(context).pleaseEnterEmailAddress;
                 }
                 return null;
               },
@@ -116,19 +117,20 @@ class RegisterPage extends GetView<RegisterController> {
                   color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
                 ),
                 obscureText: controller.showPassword.value,
-                hintText: "Password",
+                hintText: LocalizationTheme.of(context).password,
                 hintStyle: AppTextStyles.normal.copyWith(
                   fontSize: 16.sp,
-                  color:
-                      Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkTextColor.withOpacity(0.4)
+                      : AppColors.textColor.withOpacity(0.4),
                 ),
                 validator: (val) {
                   if (val.toString().isEmpty) {
-                    return "Please enter password";
+                    return LocalizationTheme.of(context).pleaseEnterPassword;
                   } else if (val.toString().length <= 6) {
-                    return "Password length must be greater than 6 characters";
+                    return LocalizationTheme.of(context).passwordLengthMustBeGreaterThanSixCharacters;
                   } else if (val.toString() != controller.confirmPasswordController.text) {
-                    return "Both Passwords must be same";
+                    return LocalizationTheme.of(context).bothPasswordsMustBeSame;
                   }
                   return null;
                 },
@@ -151,23 +153,23 @@ class RegisterPage extends GetView<RegisterController> {
                   color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor : AppColors.textColor,
                 ),
                 obscureText: controller.showConfirmPassword.value,
-                hintText: "Confirm Password",
+                hintText: LocalizationTheme.of(context).confirmPassword,
                 hintStyle: AppTextStyles.normal.copyWith(
                   fontSize: 16.sp,
-                  color:
-                      Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkTextColor.withOpacity(0.4)
+                      : AppColors.textColor.withOpacity(0.4),
                 ),
                 validator: (val) {
                   if (val.toString().isEmpty) {
-                    return "Please enter password";
+                    return LocalizationTheme.of(context).pleaseEnterPassword;
                   } else if (val.toString().length <= 6) {
-                    return "Password length must be greater than 6 characters";
+                    return LocalizationTheme.of(context).passwordLengthMustBeGreaterThanSixCharacters;
                   } else if (val.toString() != controller.passwordController.text) {
-                    return "Both Passwords must be same";
+                    return LocalizationTheme.of(context).bothPasswordsMustBeSame;
                   }
                   return null;
                 },
-
                 suffixIcon: controller.showConfirmPassword.isFalse ? Assets.svgShowPassword : Assets.svgHidePassword,
                 onSuffixIconClicked: () {
                   controller.showConfirmPassword.value = !controller.showConfirmPassword.value;
@@ -191,7 +193,7 @@ class RegisterPage extends GetView<RegisterController> {
   Widget _buildRegisterButton(BuildContext context) {
     return CupertinoButton(
       onPressed: () async {
-        if(controller.formKey.currentState!.validate()) {
+        if (controller.formKey.currentState!.validate()) {
           controller.registerNewUser();
         }
       },
@@ -206,7 +208,7 @@ class RegisterPage extends GetView<RegisterController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         alignment: Alignment.center,
         child: Text(
-          "Register",
+          LocalizationTheme.of(context).register,
           style: AppTextStyles.normal.copyWith(
             fontSize: 18.sp,
             color: Colors.white,
@@ -222,7 +224,7 @@ class RegisterPage extends GetView<RegisterController> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "Already Have an Account? ",
+          LocalizationTheme.of(context).alreadyHaveAnAccount,
           style: AppTextStyles.medium.copyWith(
             fontSize: 18.sp,
             color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.5) : AppColors.textColor.withOpacity(0.5),
@@ -240,7 +242,7 @@ class RegisterPage extends GetView<RegisterController> {
           minSize: 0,
           padding: EdgeInsets.zero,
           child: Text(
-            "Login",
+            LocalizationTheme.of(context).login,
             style: AppTextStyles.bold.copyWith(
               fontSize: 18.sp,
               decoration: TextDecoration.underline,
