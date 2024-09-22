@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
@@ -12,8 +13,10 @@ import 'package:taskify/app/database/user_database.dart';
 import 'package:taskify/app/models/tasks_model_folder/tasks_model.dart';
 import 'package:taskify/app/models/user_model_folder/user_model.dart';
 import 'package:taskify/app/modules/splash/page/splash_page.dart';
+import 'package:taskify/app/services/localization_service.dart';
 import 'package:taskify/app/services/user_service.dart';
 import 'package:taskify/firebase_options.dart';
+import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/colors/colors.dart';
 import 'package:taskify/global/textstyle/app_text_styles.dart';
 import 'package:workmanager/workmanager.dart';
@@ -21,8 +24,19 @@ import 'package:workmanager/workmanager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   await initializeDatabases();
   runApp(const MyApp());
+}
+
+Future<void> initializeDatabases() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter<UserModel>(UserModelAdapter());
+  Hive.registerAdapter<TaskModel>(TaskModelAdapter());
+  Hive.registerAdapter<SubTaskModel>(SubTaskModelAdapter());
+  await GetStorage.init();
+  await UserDatabase().init();
+  await TaskDatabase().init();
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +44,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Get.put(UserService(), permanent: true);
+    Get.put(LocalizationService(), permanent: true);
     createAppDefaultSettings(context);
     return ScreenUtilInit(
       designSize: const Size(430, 923),
@@ -57,6 +73,14 @@ class MyApp extends StatelessWidget {
               selectionHandleColor: AppColors.primary,
             ),
           ),
+          locale: Get.find<LocalizationService>().locale,
+          supportedLocales: LocalizationTheme.delegate.supportedLocales,
+          localizationsDelegates: const [
+            LocalizationTheme.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
           home: const SplashPage()),
     );
   }
@@ -97,16 +121,6 @@ Future<void> initializeBackgroundTasks() async {
     "syncUserTasks",
     frequency: 5.seconds,
   );
-}
-
-Future<void> initializeDatabases() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter<UserModel>(UserModelAdapter());
-  Hive.registerAdapter<TaskModel>(TaskModelAdapter());
-  Hive.registerAdapter<SubTaskModel>(SubTaskModelAdapter());
-  await GetStorage.init();
-  await UserDatabase().init();
-  await TaskDatabase().init();
 }
 
 @pragma('vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
