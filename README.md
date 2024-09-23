@@ -11,6 +11,7 @@ Features
 -   **Progress Tracking**: Monitor the progress of individual tasks and subtasks with real-time updates.
 -   **Offline Support**: Store tasks locally using Hive when offline and sync with Firebase once connected to the internet.
 -   **Multi-Language Support**: Taskify offers Arabic localization, which can be easily toggled by pressing a button.
+-   **Dark Mode Support**: Taskify offers dark mode themes for people who make tasks at 4 in the morning.
 -   **Seamless Synchronization**: Data is stored in Hive for offline use and automatically synced with Firebase when the app is online.
 -   **User-Friendly Interface**: A clean and intuitive UI design optimized for both dark and light modes.
 
