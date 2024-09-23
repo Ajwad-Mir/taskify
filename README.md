@@ -46,21 +46,21 @@ Compatibility
 Screenshots
 ----------------
 
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.39%20(1).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.39.jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.40%20(1).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.40.jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41%20(1).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41%20(2).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41.jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42%20(1).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42%20(2).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42.jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.43%20(1).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.43.jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.44%20(1).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.44.jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.45%20(1).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.45.jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.46%20(1).jpeg]
-![Alt text][https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.46.jpeg]
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.39%20(1).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.39.jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.40%20(1).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.40.jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41%20(1).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41%20(2).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41.jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42%20(1).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42%20(2).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42.jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.43%20(1).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.43.jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.44%20(1).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.44.jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.45%20(1).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.45.jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.46%20(1).jpeg)
+![Alt text](https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.46.jpeg)
