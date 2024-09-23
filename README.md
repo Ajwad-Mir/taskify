@@ -1,16 +1,66 @@
-# taskify
+Taskify (Flutter)
+=================
 
-Taskify, the only to-do app you will ever need
+**Taskify** is a powerful and intuitive task management app designed to help you stay organized and productive. With support for both online and offline environments, Taskify ensures you can manage tasks seamlessly, anytime, anywhere.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Features
+--------
 
-A few resources to get you started if this is your first Flutter project:
+-   **Task Management**: Create, view, and manage tasks and subtasks efficiently.
+-   **Progress Tracking**: Monitor the progress of individual tasks and subtasks with real-time updates.
+-   **Offline Support**: Store tasks locally using Hive when offline and sync with Firebase once connected to the internet.
+-   **Multi-Language Support**: Taskify offers Arabic localization, which can be easily toggled by pressing a button.
+-   **Seamless Synchronization**: Data is stored in Hive for offline use and automatically synced with Firebase when the app is online.
+-   **User-Friendly Interface**: A clean and intuitive UI design optimized for both dark and light modes.
 
-- [Lab: Write your first Flutter app](https:
-- [Cookbook: Useful Flutter samples](https:
+Technology Stack
+----------------
 
-For help getting started with Flutter development, view the
-[online documentation](https:
-samples, guidance on mobile development, and a full API reference.
+-   **Flutter**: A robust cross-platform framework that powers the entire app, ensuring high performance on Android.
+-   **Hive**: A lightweight and blazing-fast key-value store used for storing tasks and subtasks offline.
+-   **Firebase**: A cloud-based real-time database that syncs tasks and subtasks across devices when online.
+-   **GetX**: For efficient state management and localization services.
+-   **GetStorage**: For persistent data storage, ensuring quick and secure access to user preferences.
+-   **Connectivity Plus**: Ensures smooth handling of online and offline states for data synchronization.
+
+Key Functionalities
+-------------------
+
+-   **Task Creation**: Users can create tasks for customers, assign subtasks, and specify task details such as priority, due dates, and notes.
+-   **Task Progress**: Visualize the overall progress of tasks with real-time updates on the status of subtasks.
+-   **Localization**: Instant support for Arabic through a simple toggle button, making the app accessible to a wider audience.
+-   **Offline and Online Usage**: Create, edit, and delete tasks offline, and automatically sync changes when the app reconnects to the internet.
+
+Localization
+------------
+
+To toggle between **Arabic** and **English**, simply press the localization button located in the settings or app bar. The app dynamically switches languages without needing to restart.
+
+Compatibility
+-------------
+
+-   **Platforms**: Android only (iOS is not supported due to hardware limitations)
+-   **Languages Supported**: English, Arabic
+
+Screenshots
+----------------
+
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.39%20(1).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.39.jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.40%20(1).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.40.jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41%20(1).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41%20(2).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.41.jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42%20(1).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42%20(2).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.42.jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.43%20(1).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.43.jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.44%20(1).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.44.jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.45%20(1).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.45.jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.46%20(1).jpeg
+https://github.com/Ajwad-Mir/taskify/blob/main/screenshots/WhatsApp%20Image%202024-09-23%20at%2022.46.46.jpeg
