@@ -314,6 +314,7 @@ class ScheduleWidget extends GetView<TasksController> {
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
+                itemExtent: 50.h,
                 itemCount: controller.selectedDayTasks[taskIndex].taskSubtasks.length,
                 itemBuilder: (context, index) {
                   return Row(

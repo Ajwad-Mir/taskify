@@ -92,24 +92,25 @@ class TasksPage extends GetView<TasksController> {
         ),
         actions: [
           CupertinoButton(
-              onPressed: () async {
-                final currentLocale = Get.find<LocalizationService>().locale.languageCode;
-                final newLocale = currentLocale == 'en' ? 'ar' : 'en';
+            onPressed: () async {
+              final currentLocale = Get.find<LocalizationService>().locale.languageCode;
+              final newLocale = currentLocale == 'en' ? 'ar' : 'en';
 
-                // Start the fade-out animation
-                controller.animationController.forward().then((_) {
-                  Get.find<LocalizationService>().changeLocale(newLocale);
-                  controller.animationController.reverse();
-                });
-              },
-              minSize: 0,
-              padding: EdgeInsets.zero,
-              child: SvgPicture.asset(
-                Assets.svgEnglishToArabic,
-                colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black, BlendMode.srcIn),
-                width: 30.w,
-                height: 30.w,
-              )),
+              // Start the fade-out animation
+              controller.animationController.forward().then((_) {
+                Get.find<LocalizationService>().changeLocale(newLocale);
+                controller.animationController.reverse();
+              });
+            },
+            minSize: 0,
+            padding: EdgeInsets.zero,
+            child: SvgPicture.asset(
+              Assets.svgEnglishToArabic,
+              colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black, BlendMode.srcIn),
+              width: 30.w,
+              height: 30.w,
+            ),
+          ),
           20.horizontalSpace,
           CupertinoButton(
             onPressed: () async {

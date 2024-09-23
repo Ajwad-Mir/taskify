@@ -44,7 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "expand": MessageLookupByLibrary.simpleMessage("توسيع"),
         "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "high": MessageLookupByLibrary.simpleMessage("مرتفع"),
-        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "loggingIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "looksLikeYourTaskListIsEmptyWhyNotKickThingsOffByAddingSomeTasks":
             MessageLookupByLibrary.simpleMessage(
                 "يبدو أن قائمة المهام الخاصة بك فارغة!\\nلماذا لا تبدأ بإضافة بعض المهام."),
@@ -65,14 +65,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى إدخال كلمة المرور"),
         "progress": MessageLookupByLibrary.simpleMessage("التقدم"),
         "register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+        "registeringUser":
+            MessageLookupByLibrary.simpleMessage("تسجيل المستخدم"),
         "selectDueDate":
             MessageLookupByLibrary.simpleMessage("اختر تاريخ الاستحقاق"),
         "subtask": MessageLookupByLibrary.simpleMessage("مهمة فرعية"),
         "title": MessageLookupByLibrary.simpleMessage("العنوان"),
         "update": MessageLookupByLibrary.simpleMessage("تحديث"),
         "updateTask": MessageLookupByLibrary.simpleMessage("تحديث المهمة"),
-        "updatingTask":
+        "updatingProfile":
             MessageLookupByLibrary.simpleMessage("جاري تحديث المهمة"),
+        "updatingTask":
+            MessageLookupByLibrary.simpleMessage("تحديث الملف الشخصي"),
         "veryHigh": MessageLookupByLibrary.simpleMessage("مرتفع جدًا"),
         "veryLow": MessageLookupByLibrary.simpleMessage("منخفض جدًا")
       };

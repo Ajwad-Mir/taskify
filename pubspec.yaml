@@ -41,9 +41,9 @@ dependencies:
   get_storage: ^2.1.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  cloud_firestore: ^5.4.0
-  firebase_core: ^3.4.0
-  firebase_auth: ^5.2.1
+  cloud_firestore: ^5.4.2
+  firebase_core: ^3.5.0
+  firebase_auth: ^5.3.0
   flutter_svg: ^2.0.10+1
   flutter_svg_provider: ^1.0.7
   font_awesome_flutter: ^10.7.0

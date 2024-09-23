@@ -8,7 +8,7 @@ import 'package:taskify/app/services/localization_service.dart';
 import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/widgets/custom_loader_widget.dart';
 
-class TasksDetailsController extends GetxController {
+class TasksDetailsController extends GetxController with GetSingleTickerProviderStateMixin {
   final selectedTask = TaskModel.empty().obs;
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -25,13 +25,28 @@ class TasksDetailsController extends GetxController {
   var descriptionLength = 0.obs;
   final selectedDueDate = Rxn<DateTime>();
   final isUpdateMode = false.obs;
+  late final AnimationController animationController;
+  late final Animation<double> animation;
 
   @override
   void onInit() {
     super.onInit();
+
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+
+    animation = Tween<double>(begin: 1.0, end: 0.0).animate(animationController);
     descriptionController.addListener(() {
       descriptionLength.value = descriptionController.text.replaceAll('\n', '').length;
     });
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 
   void setupDateForUpdate(TaskModel task) {

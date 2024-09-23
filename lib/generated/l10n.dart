@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:taskify/generated/intl/messages_all.dart';
+import 'intl/messages_all.dart';
 
 // **************************************************************************
 // Generator: Flutter Intl IDE plugin
@@ -70,6 +70,16 @@ class LocalizationTheme {
     );
   }
 
+  /// `Logging In`
+  String get loggingIn {
+    return Intl.message(
+      'Logging In',
+      name: 'loggingIn',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Email Address`
   String get emailAddress {
     return Intl.message(
@@ -125,6 +135,16 @@ class LocalizationTheme {
     return Intl.message(
       'Register',
       name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registering User`
+  String get registeringUser {
+    return Intl.message(
+      'Registering User',
+      name: 'registeringUser',
       desc: '',
       args: [],
     );
@@ -245,6 +265,16 @@ class LocalizationTheme {
     return Intl.message(
       'Updating Task',
       name: 'updatingTask',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Updating Profile`
+  String get updatingProfile {
+    return Intl.message(
+      'Updating Profile',
+      name: 'updatingProfile',
       desc: '',
       args: [],
     );

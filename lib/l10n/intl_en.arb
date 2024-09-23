@@ -8,6 +8,10 @@
   "@login": {
     "description": ""
   },
+  "loggingIn": "Logging In",
+  "@loggingIn": {
+    "description": ""
+  },
   "emailAddress": "Email Address",
   "@emailAddress": {
     "description": ""
@@ -30,6 +34,10 @@
   },
   "register": "Register",
   "@register": {
+    "description": ""
+  },
+  "registeringUser": "Registering User",
+  "@registeringUser": {
     "description": ""
   },
   "fullName": "Full Name",
@@ -78,6 +86,10 @@
   },
   "updatingTask": "Updating Task",
   "@updatingTask": {
+    "description": ""
+  },
+  "updatingProfile": "Updating Profile",
+  "@updatingProfile": {
     "description": ""
   },
   "createTask": "Create Task",

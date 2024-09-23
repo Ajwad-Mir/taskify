@@ -4,8 +4,8 @@
   "@appName": {
     "description": ""
   },
-  "login": "تسجيل الدخول",
-  "@login": {
+  "loggingIn": "تسجيل الدخول",
+  "@loggingIn": {
     "description": ""
   },
   "emailAddress": "عنوان البريد الإلكتروني",
@@ -30,6 +30,10 @@
   },
   "register": "إنشاء حساب",
   "@register": {
+    "description": ""
+  },
+  "registeringUser": "تسجيل المستخدم",
+  "@registeringUser": {
     "description": ""
   },
   "fullName": "الاسم الكامل",
@@ -76,8 +80,12 @@
   "@updateTask": {
     "description": ""
   },
-  "updatingTask": "جاري تحديث المهمة",
+  "updatingTask": "تحديث الملف الشخصي",
   "@updatingTask": {
+    "description": ""
+  },
+  "updatingProfile": "جاري تحديث المهمة",
+  "@updatingProfile": {
     "description": ""
   },
   "createTask": "إنشاء مهمة",

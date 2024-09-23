@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:taskify/app/modules/profile/controller/profile_controller.dart';
+import 'package:taskify/app/services/localization_service.dart';
 import 'package:taskify/generated/assets.dart';
 import 'package:taskify/generated/l10n.dart';
 import 'package:taskify/global/colors/colors.dart';
@@ -17,22 +19,53 @@ class ProfilePage extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
       builder: (_) => Scaffold(
+        key: ValueKey(Get.find<LocalizationService>().locale.languageCode),
         backgroundColor: (Theme.of(context).brightness == Brightness.dark) ? AppColors.darkBackgroundColor : AppColors.backgroundColor,
-        body: SizedBox(
-          width: Get.width,
-          height: Get.height,
-          child: SafeArea(
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const LogoWidget(),
-                    30.verticalSpace,
-                    _buildForm(context),
-                    20.verticalSpace,
-                  ],
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          actions: [
+            CupertinoButton(
+              onPressed: () async {
+                final currentLocale = Get.find<LocalizationService>().locale.languageCode;
+                final newLocale = currentLocale == 'en' ? 'ar' : 'en';
+
+                // Start the fade-out animation
+                controller.animationController.forward().then((_) {
+                  Get.find<LocalizationService>().changeLocale(newLocale);
+                  controller.animationController.reverse();
+                });
+              },
+              minSize: 0,
+              padding: EdgeInsets.zero,
+              child: SvgPicture.asset(
+                Assets.svgEnglishToArabic,
+                colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black, BlendMode.srcIn),
+                width: 30.w,
+                height: 30.w,
+              ),
+            ),
+            20.horizontalSpace,
+          ],
+        ),
+        body: FadeTransition(
+          opacity: controller.animation,
+          child: SizedBox(
+            width: Get.width,
+            height: Get.height,
+            child: SafeArea(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const LogoWidget(),
+                      30.verticalSpace,
+                      _buildForm(context),
+                      20.verticalSpace,
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -69,8 +102,7 @@ class ProfilePage extends GetView<ProfileController> {
               hintText: LocalizationTheme.of(context).fullName,
               hintStyle: AppTextStyles.normal.copyWith(
                 fontSize: 16.sp,
-                color:
-                    Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
+                color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
               ),
               validator: (val) {
                 if (val.toString().isEmpty) {
@@ -95,9 +127,7 @@ class ProfilePage extends GetView<ProfileController> {
                 hintText: LocalizationTheme.of(context).password,
                 hintStyle: AppTextStyles.normal.copyWith(
                   fontSize: 16.sp,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? AppColors.darkTextColor.withOpacity(0.4)
-                      : AppColors.textColor.withOpacity(0.4),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
                 ),
                 validator: (val) {
                   if (val.toString().isEmpty) {
@@ -131,9 +161,7 @@ class ProfilePage extends GetView<ProfileController> {
                 hintText: LocalizationTheme.of(context).confirmPassword,
                 hintStyle: AppTextStyles.normal.copyWith(
                   fontSize: 16.sp,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? AppColors.darkTextColor.withOpacity(0.4)
-                      : AppColors.textColor.withOpacity(0.4),
+                  color: Theme.of(context).brightness == Brightness.dark ? AppColors.darkTextColor.withOpacity(0.4) : AppColors.textColor.withOpacity(0.4),
                 ),
                 validator: (val) {
                   if (val.toString().isEmpty) {

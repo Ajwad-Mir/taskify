@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "expand": MessageLookupByLibrary.simpleMessage("Expand"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "high": MessageLookupByLibrary.simpleMessage("High"),
+        "loggingIn": MessageLookupByLibrary.simpleMessage("Logging In"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "looksLikeYourTaskListIsEmptyWhyNotKickThingsOffByAddingSomeTasks":
             MessageLookupByLibrary.simpleMessage(
@@ -64,12 +65,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter password"),
         "progress": MessageLookupByLibrary.simpleMessage("Progress"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "registeringUser":
+            MessageLookupByLibrary.simpleMessage("Registering User"),
         "selectDueDate":
             MessageLookupByLibrary.simpleMessage("Select Due Date"),
         "subtask": MessageLookupByLibrary.simpleMessage("Subtask"),
         "title": MessageLookupByLibrary.simpleMessage("Title"),
         "update": MessageLookupByLibrary.simpleMessage("Update"),
         "updateTask": MessageLookupByLibrary.simpleMessage("Update Task"),
+        "updatingProfile":
+            MessageLookupByLibrary.simpleMessage("Updating Profile"),
         "updatingTask": MessageLookupByLibrary.simpleMessage("Updating Task"),
         "veryHigh": MessageLookupByLibrary.simpleMessage("Very High"),
         "veryLow": MessageLookupByLibrary.simpleMessage("Very Low")
